@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Header from '../components/Header';
 
 const Home: NextPage = () => {
 	return (
@@ -12,10 +13,11 @@ const Home: NextPage = () => {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<h1 className="text-3xl font-bold underline">Hello world!</h1>
-			{/* Header */}
-			{/* Main */}
-			{/* Footer */}
+			<div className="container mx-auto py-12 px-4 sm:px-0 max-w-4xl">
+				<Header />
+				{/* Main */}
+				{/* Footer */}
+			</div>
 		</>
 	);
 };
