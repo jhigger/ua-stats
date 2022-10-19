@@ -1,4 +1,5 @@
 import Card from './Card';
+import Section from './Section';
 
 type StatsProps = { title: string; data: string };
 
@@ -19,16 +20,11 @@ type SocialStatsProps = { stats: StatsProps[] };
 
 const SocialStats = (props: SocialStatsProps) => {
 	return (
-		<section>
-			<h2 className="text-lg leading-6 font-medium text-neutral-100">
-				Social Stats
-			</h2>
-			<dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-				{props.stats.map(({ title, data }) => {
-					return <Stats key={title} title={title} data={data} />;
-				})}
-			</dl>
-		</section>
+		<Section title="Social Stats">
+			{props.stats.map(({ title, data }) => {
+				return <Stats key={title} title={title} data={data} />;
+			})}
+		</Section>
 	);
 };
 
