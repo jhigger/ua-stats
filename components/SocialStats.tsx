@@ -21,9 +21,11 @@ type SocialStatsProps = { stats: StatsProps[] };
 const SocialStats = (props: SocialStatsProps) => {
 	return (
 		<Section title="Social Stats">
-			{props.stats.map(({ title, data }) => {
-				return <Stats key={title} title={title} data={data} />;
-			})}
+			<dl className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+				{props.stats.map(({ title, data }) => {
+					return <Stats key={title} title={title} data={data} />;
+				})}
+			</dl>
 		</Section>
 	);
 };
