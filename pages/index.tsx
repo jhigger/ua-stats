@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import GithubCommits from '../components/GithubCommits';
 import Header from '../components/Header';
 import SocialStats from '../components/SocialStats';
 
@@ -24,7 +25,7 @@ const Home: NextPage = () => {
 				<Header />
 				<div className="flex flex-col gap-12">
 					<SocialStats stats={stats} />
-					{/* TODO: Github calendar */}
+					<GithubCommits />
 				</div>
 				{/* TODO: Footer */}
 			</div>
