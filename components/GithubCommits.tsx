@@ -7,7 +7,7 @@ type Props = {};
 const GithubCommits = (props: Props) => {
 	return (
 		<Section title="Github Commits">
-			<Card>
+			<Card className="sm:p-8">
 				<img
 					src="https://ghchart.rshah.org/wozgun"
 					alt="github calendar"

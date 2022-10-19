@@ -26,6 +26,7 @@ const Home: NextPage = () => {
 				<div className="flex flex-col gap-12">
 					<SocialStats stats={stats} />
 					<GithubCommits />
+					{/* TODO: Uptime Stats */}
 				</div>
 				{/* TODO: Footer */}
 			</div>
