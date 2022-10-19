@@ -1,8 +1,15 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Header from '../components/Header';
+import SocialStats from '../components/SocialStats';
 
 const Home: NextPage = () => {
+	const stats = [
+		{ title: 'Team', data: '17 Smiths' },
+		{ title: 'Twitter Followers', data: '60.91k' },
+		{ title: 'Discord Members', data: '30.91k' }
+	];
+
 	return (
 		<>
 			<Head>
@@ -15,8 +22,11 @@ const Home: NextPage = () => {
 			</Head>
 			<div className="container mx-auto py-12 px-4 sm:px-0 max-w-4xl">
 				<Header />
-				{/* Main */}
-				{/* Footer */}
+				<div className="flex flex-col gap-12">
+					<SocialStats stats={stats} />
+					{/* TODO: Github calendar */}
+				</div>
+				{/* TODO: Footer */}
 			</div>
 		</>
 	);
