@@ -7,6 +7,7 @@ import SocialStats, {
 	StatsProps,
 	SocialStatsProps
 } from '../components/SocialStats';
+import UptimeStats from '../components/UptimeStats';
 
 const Home: NextPage<SocialStatsProps> = ({ stats }) => {
 	return (
@@ -24,7 +25,7 @@ const Home: NextPage<SocialStatsProps> = ({ stats }) => {
 				<div className="flex flex-col gap-12">
 					<SocialStats stats={stats} />
 					<GithubCommits />
-					{/* TODO: Uptime Stats */}
+					<UptimeStats />
 				</div>
 				{/* TODO: Footer */}
 			</div>
