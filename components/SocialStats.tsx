@@ -1,7 +1,7 @@
 import Card from './Card';
 import Section from './Section';
 
-type StatsProps = { title: string; data: string };
+export type StatsProps = { title: string; data: string };
 
 const Stats = (props: StatsProps) => {
 	return (
@@ -16,7 +16,7 @@ const Stats = (props: StatsProps) => {
 	);
 };
 
-type SocialStatsProps = { stats: StatsProps[] };
+export type SocialStatsProps = { stats: StatsProps[] };
 
 const SocialStats = (props: SocialStatsProps) => {
 	return (

@@ -1,16 +1,14 @@
 import type { NextPage } from 'next';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import GithubCommits from '../components/GithubCommits';
 import Header from '../components/Header';
-import SocialStats from '../components/SocialStats';
+import SocialStats, {
+	StatsProps,
+	SocialStatsProps
+} from '../components/SocialStats';
 
-const Home: NextPage = () => {
-	const stats = [
-		{ title: 'Team', data: '17 Smiths' },
-		{ title: 'Twitter Followers', data: '60.91k' },
-		{ title: 'Discord Members', data: '30.91k' }
-	];
-
+const Home: NextPage<SocialStatsProps> = ({ stats }) => {
 	return (
 		<>
 			<Head>
@@ -32,6 +30,20 @@ const Home: NextPage = () => {
 			</div>
 		</>
 	);
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+	const stats: StatsProps[] = [
+		{ title: 'Team', data: '17 Smiths' },
+		{ title: 'Twitter Followers', data: '60.91k' },
+		{ title: 'Discord Members', data: '30.91k' }
+	];
+
+	return {
+		props: {
+			stats
+		}
+	};
 };
 
 export default Home;
