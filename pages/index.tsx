@@ -1,15 +1,22 @@
 import type { NextPage } from 'next';
 import { GetServerSideProps } from 'next';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
+import { ChartProps, CollectionProps } from '../components/Collection';
 import GithubCommits from '../components/GithubCommits';
 import Header from '../components/Header';
 import SocialStats, {
-	StatsProps,
-	SocialStatsProps
+	SocialStatsProps,
+	StatsProps
 } from '../components/SocialStats';
 import UptimeStats from '../components/UptimeStats';
 
-const Home: NextPage<SocialStatsProps> = ({ stats }) => {
+const Collection = dynamic(import('../components/Collection'), { ssr: false });
+
+const Home: NextPage<SocialStatsProps & CollectionProps> = ({
+	stats,
+	collections
+}) => {
 	return (
 		<>
 			<Head>
@@ -26,6 +33,9 @@ const Home: NextPage<SocialStatsProps> = ({ stats }) => {
 					<SocialStats stats={stats} />
 					<GithubCommits />
 					<UptimeStats />
+					<Collection collections={collections} />
+					{/* <Revenue /> */}
+					{/* <Balances /> */}
 				</div>
 				{/* TODO: Footer */}
 			</div>
@@ -40,9 +50,61 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		{ title: 'Discord Members', data: '30.91k' }
 	];
 
+	const collections: ChartProps[] = [
+		{
+			title: 'Listed NFTs',
+			data: [
+				{ date: '2022-10-14', count: Math.random() },
+				{ date: '2022-10-15', count: Math.random() },
+				{ date: '2022-10-16', count: Math.random() },
+				{ date: '2022-10-17', count: Math.random() },
+				{ date: '2022-10-18', count: Math.random() },
+				{ date: '2022-10-19', count: Math.random() },
+				{ date: '2022-10-20', count: Math.random() }
+			]
+		},
+		{
+			title: 'Unique Owners',
+			data: [
+				{ date: '2022-10-14', count: Math.random() },
+				{ date: '2022-10-15', count: Math.random() },
+				{ date: '2022-10-16', count: Math.random() },
+				{ date: '2022-10-17', count: Math.random() },
+				{ date: '2022-10-18', count: Math.random() },
+				{ date: '2022-10-19', count: Math.random() },
+				{ date: '2022-10-20', count: Math.random() }
+			]
+		},
+		{
+			title: 'Twitter Followers',
+			data: [
+				{ date: '2022-10-14', count: Math.random() },
+				{ date: '2022-10-15', count: Math.random() },
+				{ date: '2022-10-16', count: Math.random() },
+				{ date: '2022-10-17', count: Math.random() },
+				{ date: '2022-10-18', count: Math.random() },
+				{ date: '2022-10-19', count: Math.random() },
+				{ date: '2022-10-20', count: Math.random() }
+			]
+		},
+		{
+			title: 'Sales Amount SOL',
+			data: [
+				{ date: '2022-10-14', count: Math.random() },
+				{ date: '2022-10-15', count: Math.random() },
+				{ date: '2022-10-16', count: Math.random() },
+				{ date: '2022-10-17', count: Math.random() },
+				{ date: '2022-10-18', count: Math.random() },
+				{ date: '2022-10-19', count: Math.random() },
+				{ date: '2022-10-20', count: Math.random() }
+			]
+		}
+	];
+
 	return {
 		props: {
-			stats
+			stats,
+			collections
 		}
 	};
 };
