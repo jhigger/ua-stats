@@ -3,9 +3,9 @@ import Logo from '../assets/BSL_WHITE.png';
 import CardGrid, { CardGridProps } from './CardGrid';
 import Section, { SectionHeader } from './Section';
 
-export type ForgeProps = { forges: CardGridProps[] };
+export type ForgeProps = { forgeStats: CardGridProps[] };
 
-const Forge = ({ forges }: ForgeProps) => {
+const Forge = ({ forgeStats }: ForgeProps) => {
 	return (
 		<>
 			<SectionHeader
@@ -13,7 +13,7 @@ const Forge = ({ forges }: ForgeProps) => {
 				title="Forge"
 			/>
 			<Section>
-				<CardGrid items={forges} />
+				<CardGrid items={forgeStats} />
 			</Section>
 		</>
 	);

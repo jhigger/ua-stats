@@ -22,7 +22,7 @@ const Home: NextPage<HomeProps> = ({
 	socialStats,
 	collections,
 	balances,
-	forges,
+	forgeStats,
 	mercuryStats,
 	uniqueUsers,
 	projectsOnboarded
@@ -57,7 +57,7 @@ const Home: NextPage<HomeProps> = ({
 							/>
 						</a>
 					</div>
-					<Forge forges={forges} />
+					<Forge forgeStats={forgeStats} />
 					<Mercury mercuryStats={mercuryStats} />
 					<Chart title="Unique Users" data={uniqueUsers} />
 					<Chart
@@ -135,7 +135,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		{ title: 'FORGE Balance', data: '2.36M FORGE' }
 	];
 
-	const forges: CardGridProps[] = [
+	const forgeStats: CardGridProps[] = [
 		{ title: 'Total Supply', data: '44M FORGE' },
 		{ title: 'Claimed Supply', data: '6.62M FORGE' },
 		{ title: 'Circulating Supply', data: '4.26M FORGE' }
@@ -174,7 +174,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			socialStats,
 			collections,
 			balances,
-			forges,
+			forgeStats,
 			mercuryStats,
 			uniqueUsers,
 			projectsOnboarded
