@@ -2,24 +2,35 @@ import type { NextPage } from 'next';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
+import Image from 'next/image';
+import Solanakit from '../assets/Solanakit.png';
 import Balances, { BalancesProps } from '../components/Balances';
 import { CardGridProps } from '../components/CardGrid';
 import { ChartProps } from '../components/Chart';
 import { CollectionProps } from '../components/Collection';
+import Forge, { ForgeProps } from '../components/Forge';
 import GithubCommits from '../components/GithubCommits';
 import Header from '../components/Header';
+import Mercury, { MercuryProps } from '../components/Mercury';
 import Revenue from '../components/Revenue';
 import SocialStats, { SocialStatsProps } from '../components/SocialStats';
 import UptimeStats from '../components/UptimeStats';
-import Solanakit from '../assets/Solanakit.png';
-import Image from 'next/image';
-import Forge, { ForgeProps } from '../components/Forge';
 
 const Collection = dynamic(import('../components/Collection'), { ssr: false });
 
-type Props = SocialStatsProps & CollectionProps & BalancesProps & ForgeProps;
+type Props = SocialStatsProps &
+	CollectionProps &
+	BalancesProps &
+	ForgeProps &
+	MercuryProps;
 
-const Home: NextPage<Props> = ({ stats, collections, balances, forges }) => {
+const Home: NextPage<Props> = ({
+	stats,
+	collections,
+	balances,
+	forges,
+	mercuryStats
+}) => {
 	return (
 		<>
 			<Head>
@@ -51,6 +62,7 @@ const Home: NextPage<Props> = ({ stats, collections, balances, forges }) => {
 						</a>
 					</div>
 					<Forge forges={forges} />
+					<Mercury mercuryStats={mercuryStats} />
 				</div>
 				{/* TODO: Footer */}
 			</div>
@@ -128,12 +140,21 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		{ title: 'Circulating Supply', data: '4.26M FORGE' }
 	];
 
+	const mercuryStats: CardGridProps[] = [
+		{ title: 'Projects Onboarded', data: '832' },
+		{ title: 'Registered Wallets', data: '309.45k' },
+		{ title: 'Whitelists Claimed', data: '2.46M' },
+		{ title: 'FCFS Amount', data: '433' },
+		{ title: 'Total FCFS Spots Given', data: '22.71k' }
+	];
+
 	return {
 		props: {
 			stats,
 			collections,
 			balances,
-			forges
+			forges,
+			mercuryStats
 		}
 	};
 };
