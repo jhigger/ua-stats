@@ -63,9 +63,7 @@ const Home: NextPage<HomeProps> = ({
 							/>
 						</a>
 					</div>
-				</div>
-				<Forge forgeStats={forgeStats} />
-				<div className="flex flex-col gap-12">
+					<Forge forgeStats={forgeStats} />
 					<Mercury mercuryStats={mercuryStats} />
 					<Chart title="Unique Users" data={uniqueUsers} />
 					<Chart
