@@ -123,9 +123,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	];
 
 	const forges: CardGridProps[] = [
-		{ title: 'SOL Balance', data: '13.17k SOL' },
-		{ title: 'USDC Balance', data: '60.9k USDC' },
-		{ title: 'FORGE Balance', data: '2.36M FORGE' }
+		{ title: 'Total Supply', data: '44M FORGE' },
+		{ title: 'Claimed Supply', data: '6.62M FORGE' },
+		{ title: 'Circulating Supply', data: '4.26M FORGE' }
 	];
 
 	return {
