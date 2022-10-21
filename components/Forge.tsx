@@ -10,7 +10,7 @@ const Forge = ({ forges }: ForgeProps) => {
 		<>
 			<SectionHeader
 				image={<Image src={Logo} alt="logo" width={135} height={24} />}
-				title="Collection"
+				title="Forge"
 			/>
 			<Section>
 				<CardGrid items={forges} />
