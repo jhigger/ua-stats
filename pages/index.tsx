@@ -20,18 +20,7 @@ import { HomeProps } from '../types';
 
 const Collection = dynamic(import('../components/Collection'), { ssr: false });
 
-const Home: NextPage<HomeProps> = ({
-	socialStats,
-	collections,
-	balances,
-	forgeStats,
-	mercuryStats,
-	uniqueUsers,
-	projectsOnboard,
-	mercuryStoreStats,
-	forgeSpent,
-	tableData
-}) => {
+const Home: NextPage<HomeProps> = (props) => {
 	return (
 		<>
 			<Head>
@@ -45,21 +34,24 @@ const Home: NextPage<HomeProps> = ({
 			<div className="container mx-auto py-12 px-4 sm:px-0 max-w-4xl">
 				<Header />
 				<div className="flex flex-col gap-12">
-					<SocialStats socialStats={socialStats} />
+					<SocialStats socialStats={props.socialStats} />
 					<GithubCommits />
 					<UptimeStats />
-					<Collection collections={collections} />
+					<Collection collections={props.collections} />
 					<Revenue />
-					<Balances balances={balances} />
+					<Balances balances={props.balances} />
 					<Solanakit />
-					<Forge forgeStats={forgeStats} />
-					<Mercury mercuryStats={mercuryStats} />
-					<Chart title="Unique Users" data={uniqueUsers} />
-					<Chart title="Projects Onboard" data={projectsOnboard} />
-					<MercuryStore mercuryStoreStats={mercuryStoreStats} />
-					<Chart title="FORGE Spent" data={forgeSpent} />
+					<Forge forgeStats={props.forgeStats} />
+					<Mercury mercuryStats={props.mercuryStats} />
+					<Chart title="Unique Users" data={props.uniqueUsers} />
+					<Chart
+						title="Projects Onboard"
+						data={props.projectsOnboard}
+					/>
+					<MercuryStore mercuryStoreStats={props.mercuryStoreStats} />
+					<Chart title="FORGE Spent" data={props.forgeSpent} />
 				</div>
-				<Bifrost tableData={tableData} />
+				<Bifrost tableData={props.tableData} />
 				<Shift />
 			</div>
 		</>
