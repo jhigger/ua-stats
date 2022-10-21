@@ -13,14 +13,13 @@ import SocialStats, { SocialStatsProps } from '../components/SocialStats';
 import UptimeStats from '../components/UptimeStats';
 import Solanakit from '../assets/Solanakit.png';
 import Image from 'next/image';
+import Forge, { ForgeProps } from '../components/Forge';
 
 const Collection = dynamic(import('../components/Collection'), { ssr: false });
 
-const Home: NextPage<SocialStatsProps & CollectionProps & BalancesProps> = ({
-	stats,
-	collections,
-	balances
-}) => {
+type Props = SocialStatsProps & CollectionProps & BalancesProps & ForgeProps;
+
+const Home: NextPage<Props> = ({ stats, collections, balances, forges }) => {
 	return (
 		<>
 			<Head>
@@ -51,6 +50,7 @@ const Home: NextPage<SocialStatsProps & CollectionProps & BalancesProps> = ({
 							/>
 						</a>
 					</div>
+					<Forge forges={forges} />
 				</div>
 				{/* TODO: Footer */}
 			</div>
@@ -122,11 +122,18 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		{ title: 'FORGE Balance', data: '2.36M FORGE' }
 	];
 
+	const forges: CardGridProps[] = [
+		{ title: 'SOL Balance', data: '13.17k SOL' },
+		{ title: 'USDC Balance', data: '60.9k USDC' },
+		{ title: 'FORGE Balance', data: '2.36M FORGE' }
+	];
+
 	return {
 		props: {
 			stats,
 			collections,
-			balances
+			balances,
+			forges
 		}
 	};
 };
