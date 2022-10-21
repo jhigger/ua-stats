@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Solanakit from '../assets/Solanakit.png';
 import Balances, { BalancesProps } from '../components/Balances';
 import { CardGridProps } from '../components/CardGrid';
-import { ChartProps } from '../components/Chart';
+import Chart, { ChartData, ChartProps } from '../components/Chart';
 import { CollectionProps } from '../components/Collection';
 import Forge, { ForgeProps } from '../components/Forge';
 import GithubCommits from '../components/GithubCommits';
@@ -18,18 +18,25 @@ import UptimeStats from '../components/UptimeStats';
 
 const Collection = dynamic(import('../components/Collection'), { ssr: false });
 
-type Props = SocialStatsProps &
+type UniqueUsers = { uniqueUsers: ChartData[] };
+type ProjectsOnboarded = { projectsOnboarded: ChartData[] };
+
+type HomeProps = SocialStatsProps &
 	CollectionProps &
 	BalancesProps &
 	ForgeProps &
-	MercuryProps;
+	MercuryProps &
+	UniqueUsers &
+	ProjectsOnboarded;
 
-const Home: NextPage<Props> = ({
+const Home: NextPage<HomeProps> = ({
 	socialStats,
 	collections,
 	balances,
 	forges,
-	mercuryStats
+	mercuryStats,
+	uniqueUsers,
+	projectsOnboarded
 }) => {
 	return (
 		<>
@@ -63,6 +70,11 @@ const Home: NextPage<Props> = ({
 					</div>
 					<Forge forges={forges} />
 					<Mercury mercuryStats={mercuryStats} />
+					<Chart title="Unique Users" data={uniqueUsers} />
+					<Chart
+						title="Projects Onboarded"
+						data={projectsOnboarded}
+					/>
 				</div>
 				{/* TODO: Footer */}
 			</div>
@@ -148,13 +160,35 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		{ title: 'Total FCFS Spots Given', data: '22.71k' }
 	];
 
+	const uniqueUsers: ChartData[] = [
+		{ date: '2022-10-14', count: Math.random() },
+		{ date: '2022-10-15', count: Math.random() },
+		{ date: '2022-10-16', count: Math.random() },
+		{ date: '2022-10-17', count: Math.random() },
+		{ date: '2022-10-18', count: Math.random() },
+		{ date: '2022-10-19', count: Math.random() },
+		{ date: '2022-10-20', count: Math.random() }
+	];
+
+	const projectsOnboarded: ChartData[] = [
+		{ date: '2022-10-14', count: Math.random() },
+		{ date: '2022-10-15', count: Math.random() },
+		{ date: '2022-10-16', count: Math.random() },
+		{ date: '2022-10-17', count: Math.random() },
+		{ date: '2022-10-18', count: Math.random() },
+		{ date: '2022-10-19', count: Math.random() },
+		{ date: '2022-10-20', count: Math.random() }
+	];
+
 	return {
 		props: {
 			socialStats,
 			collections,
 			balances,
 			forges,
-			mercuryStats
+			mercuryStats,
+			uniqueUsers,
+			projectsOnboarded
 		}
 	};
 };

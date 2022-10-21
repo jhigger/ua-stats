@@ -10,9 +10,11 @@ import {
 import Card from './Card';
 import Section from './Section';
 
+export type ChartData = { date: string; count: number };
+
 export type ChartProps = {
 	title: string;
-	data: { date: string; count: number }[];
+	data: ChartData[];
 };
 
 const Chart = ({ title, data }: ChartProps) => {
