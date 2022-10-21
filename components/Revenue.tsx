@@ -4,7 +4,7 @@ type Props = {};
 
 const Revenue = (props: Props) => {
 	return (
-		<Section title="Social Stats">
+		<Section title="Revenue From Royalties">
 			<div className="text-white font-bold text-lg">RIP 🪦</div>
 		</Section>
 	);
