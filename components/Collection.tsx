@@ -10,22 +10,7 @@ import {
 } from 'recharts';
 import Logo from '../assets/BSL_WHITE.png';
 import Card from './Card';
-import Section from './Section';
-
-const Header = () => {
-	return (
-		<div className="relative flex py-5 items-center mt-12">
-			<div className="flex-grow border-t border-neutral-400"></div>
-			<span className="flex-shrink mx-4 text-neutral-400">
-				<div className="text-3xl text-white flex items-center gap-5">
-					<Image src={Logo} alt="logo" width={135} height={24} />
-					<h2>Collection</h2>
-				</div>
-			</span>
-			<div className="flex-grow border-t border-neutral-400"></div>
-		</div>
-	);
-};
+import Section, { SectionHeader } from './Section';
 
 export type ChartProps = {
 	title: string;
@@ -84,7 +69,10 @@ export type CollectionProps = { collections: ChartProps[] };
 const Collection = ({ collections }: CollectionProps) => {
 	return (
 		<>
-			<Header />
+			<SectionHeader
+				image={<Image src={Logo} alt="logo" width={135} height={24} />}
+				title="Collection"
+			/>
 			<div className="grid sm:grid-cols-2 gap-8">
 				{collections.map(({ title, data }) => {
 					return <Chart key={title} title={title} data={data} />;
