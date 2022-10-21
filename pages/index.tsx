@@ -6,6 +6,7 @@ import { ChartProps } from '../components/Chart';
 import { CollectionProps } from '../components/Collection';
 import GithubCommits from '../components/GithubCommits';
 import Header from '../components/Header';
+import Revenue from '../components/Revenue';
 import SocialStats, {
 	SocialStatsProps,
 	StatsProps
@@ -35,7 +36,7 @@ const Home: NextPage<SocialStatsProps & CollectionProps> = ({
 					<GithubCommits />
 					<UptimeStats />
 					<Collection collections={collections} />
-					{/* <Revenue /> */}
+					<Revenue />
 					{/* <Balances /> */}
 				</div>
 				{/* TODO: Footer */}
