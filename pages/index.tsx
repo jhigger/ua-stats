@@ -2,7 +2,8 @@ import type { NextPage } from 'next';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { ChartProps, CollectionProps } from '../components/Collection';
+import { ChartProps } from '../components/Chart';
+import { CollectionProps } from '../components/Collection';
 import GithubCommits from '../components/GithubCommits';
 import Header from '../components/Header';
 import SocialStats, {
