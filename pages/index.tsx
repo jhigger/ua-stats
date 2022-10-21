@@ -4,30 +4,19 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Image from 'next/image';
 import Solanakit from '../assets/Solanakit.png';
-import Balances, { BalancesProps } from '../components/Balances';
+import Balances from '../components/Balances';
 import { CardGridProps } from '../components/CardGrid';
 import Chart, { ChartData, ChartProps } from '../components/Chart';
-import { CollectionProps } from '../components/Collection';
-import Forge, { ForgeProps } from '../components/Forge';
+import Forge from '../components/Forge';
 import GithubCommits from '../components/GithubCommits';
 import Header from '../components/Header';
-import Mercury, { MercuryProps } from '../components/Mercury';
+import Mercury from '../components/Mercury';
 import Revenue from '../components/Revenue';
-import SocialStats, { SocialStatsProps } from '../components/SocialStats';
+import SocialStats from '../components/SocialStats';
 import UptimeStats from '../components/UptimeStats';
+import { HomeProps } from '../types';
 
 const Collection = dynamic(import('../components/Collection'), { ssr: false });
-
-type UniqueUsers = { uniqueUsers: ChartData[] };
-type ProjectsOnboarded = { projectsOnboarded: ChartData[] };
-
-type HomeProps = SocialStatsProps &
-	CollectionProps &
-	BalancesProps &
-	ForgeProps &
-	MercuryProps &
-	UniqueUsers &
-	ProjectsOnboarded;
 
 const Home: NextPage<HomeProps> = ({
 	socialStats,
