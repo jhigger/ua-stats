@@ -2,8 +2,6 @@ import type { NextPage } from 'next';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import Image from 'next/image';
-import Solanakit from '../assets/Solanakit.png';
 import Balances from '../components/Balances';
 import Bifrost, { TableRowProps } from '../components/Bifrost';
 import { CardGridProps } from '../components/CardGrid';
@@ -16,6 +14,7 @@ import MercuryStore from '../components/MercuryStore';
 import Revenue from '../components/Revenue';
 import Shift from '../components/Shift';
 import SocialStats from '../components/SocialStats';
+import Solanakit from '../components/Solanakit';
 import UptimeStats from '../components/UptimeStats';
 import { HomeProps } from '../types';
 
@@ -52,17 +51,7 @@ const Home: NextPage<HomeProps> = ({
 					<Collection collections={collections} />
 					<Revenue />
 					<Balances balances={balances} />
-					<div className="text-white text-center flex gap-3 items-center justify-center">
-						Collection data provided by
-						<a href="https://solanakit.com/">
-							<Image
-								src={Solanakit}
-								alt="solanakit.com"
-								width={100}
-								height={28}
-							/>
-						</a>
-					</div>
+					<Solanakit />
 					<Forge forgeStats={forgeStats} />
 					<Mercury mercuryStats={mercuryStats} />
 					<Chart title="Unique Users" data={uniqueUsers} />
