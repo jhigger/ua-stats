@@ -27,7 +27,8 @@ const Home: NextPage<HomeProps> = ({
 	mercuryStats,
 	uniqueUsers,
 	projectsOnboarded,
-	mercuryStoreStats
+	mercuryStoreStats,
+	forgeSpent
 }) => {
 	return (
 		<>
@@ -67,6 +68,8 @@ const Home: NextPage<HomeProps> = ({
 						data={projectsOnboarded}
 					/>
 					<MercuryStore mercuryStoreStats={mercuryStoreStats} />
+					<Chart title="FORGE Spent" data={forgeSpent} />
+					{/* TODO: <Bifrost /> */}
 				</div>
 				{/* TODO: Footer */}
 			</div>
@@ -182,6 +185,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		{ title: 'FORGE Rewards Tweets', data: '15' }
 	];
 
+	const forgeSpent: ChartData[] = [
+		{ date: '2022-10-14', count: Math.random() },
+		{ date: '2022-10-15', count: Math.random() },
+		{ date: '2022-10-16', count: Math.random() },
+		{ date: '2022-10-17', count: Math.random() },
+		{ date: '2022-10-18', count: Math.random() },
+		{ date: '2022-10-19', count: Math.random() },
+		{ date: '2022-10-20', count: Math.random() }
+	];
+
 	return {
 		props: {
 			socialStats,
@@ -191,7 +204,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			mercuryStats,
 			uniqueUsers,
 			projectsOnboarded,
-			mercuryStoreStats
+			mercuryStoreStats,
+			forgeSpent
 		}
 	};
 };

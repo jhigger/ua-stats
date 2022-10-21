@@ -12,6 +12,7 @@ export interface Props {
 
 type UniqueUsers = { uniqueUsers: ChartData[] };
 type ProjectsOnboarded = { projectsOnboarded: ChartData[] };
+type ForgeSpent = { forgeSpent: ChartData[] };
 
 export type HomeProps = SocialStatsProps &
 	CollectionProps &
@@ -20,4 +21,5 @@ export type HomeProps = SocialStatsProps &
 	MercuryProps &
 	UniqueUsers &
 	ProjectsOnboarded &
-	MercuryStoreProps;
+	MercuryStoreProps &
+	ForgeSpent;
