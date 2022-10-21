@@ -60,7 +60,9 @@ const Home: NextPage<HomeProps> = ({
 							/>
 						</a>
 					</div>
-					<Forge forgeStats={forgeStats} />
+				</div>
+				<Forge forgeStats={forgeStats} />
+				<div className="flex flex-col gap-12">
 					<Mercury mercuryStats={mercuryStats} />
 					<Chart title="Unique Users" data={uniqueUsers} />
 					<Chart
@@ -69,8 +71,9 @@ const Home: NextPage<HomeProps> = ({
 					/>
 					<MercuryStore mercuryStoreStats={mercuryStoreStats} />
 					<Chart title="FORGE Spent" data={forgeSpent} />
-					{/* TODO: <Bifrost /> */}
 				</div>
+				{/* TODO: <Bifrost /> */}
+				{/* TODO: <Shift /> */}
 				{/* TODO: Footer */}
 			</div>
 		</>
