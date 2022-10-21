@@ -1,4 +1,5 @@
 import { BalancesProps } from '../components/Balances';
+import { BifrostProps } from '../components/Bifrost';
 import { ChartData } from '../components/Chart';
 import { CollectionProps } from '../components/Collection';
 import { ForgeProps } from '../components/Forge';
@@ -22,4 +23,5 @@ export type HomeProps = SocialStatsProps &
 	UniqueUsers &
 	ProjectsOnboarded &
 	MercuryStoreProps &
-	ForgeSpent;
+	ForgeSpent &
+	BifrostProps;

@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Solanakit from '../assets/Solanakit.png';
 import Balances from '../components/Balances';
+import Bifrost, { TableRowProps } from '../components/Bifrost';
 import { CardGridProps } from '../components/CardGrid';
 import Chart, { ChartData, ChartProps } from '../components/Chart';
 import Forge from '../components/Forge';
@@ -28,7 +29,8 @@ const Home: NextPage<HomeProps> = ({
 	uniqueUsers,
 	projectsOnboarded,
 	mercuryStoreStats,
-	forgeSpent
+	forgeSpent,
+	tableData
 }) => {
 	return (
 		<>
@@ -72,7 +74,7 @@ const Home: NextPage<HomeProps> = ({
 					<MercuryStore mercuryStoreStats={mercuryStoreStats} />
 					<Chart title="FORGE Spent" data={forgeSpent} />
 				</div>
-				{/* TODO: <Bifrost /> */}
+				<Bifrost tableData={tableData} />
 				{/* TODO: <Shift /> */}
 				{/* TODO: Footer */}
 			</div>
@@ -198,6 +200,36 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		{ date: '2022-10-20', count: Math.random() }
 	];
 
+	const tableData: TableRowProps[] = [
+		{
+			projectImage:
+				'https://openseauserdata.com/files/2e3141cc361e423251b22e36889a3d46.jpg',
+			projectName: 'Froots',
+			launchDate: '2022-07-21',
+			avgMintPrice: '2.42',
+			totalSolRaised: '17.66k',
+			totalForgeRaised: '180.34k'
+		},
+		{
+			projectImage:
+				'https://lh3.googleusercontent.com/JErlxdzvkNGjNYOr3QJNGwj1ghcWkdBM9qXqlPr1SKo_ulOXRyNVo62G1xL7rghbcl22MLzgf1tXNlhV5FoD2c1pl-2SG1psaLqlj1I=s168',
+			projectName: 'Sentries',
+			launchDate: '2022-08-19',
+			avgMintPrice: '1',
+			totalSolRaised: '7.65k',
+			totalForgeRaised: '176.89k'
+		},
+		{
+			projectImage:
+				'https://i.seadn.io/gae/3OVrBTpRHzuKwmJc-ALNr0F94Gvh07Zo6nPrcSL5EwP541QE0IhZ4nVcktL93APCKUxhi6XwXxvlBJPtdSLCJROwfXdGerBVG05Ddw?auto=format&w=256',
+			projectName: 'sharx by Sharky.fi',
+			launchDate: '2022-10-02',
+			avgMintPrice: '2.9',
+			totalSolRaised: '14.07k',
+			totalForgeRaised: '98.02k'
+		}
+	];
+
 	return {
 		props: {
 			socialStats,
@@ -208,7 +240,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			uniqueUsers,
 			projectsOnboarded,
 			mercuryStoreStats,
-			forgeSpent
+			forgeSpent,
+			tableData
 		}
 	};
 };
