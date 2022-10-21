@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { SectionHeader } from './Section';
-import BifrostImage from '../assets/Bifrost.ico';
 import Image from 'next/image';
+import BifrostImage from '../assets/Bifrost.ico';
+import { SectionHeader } from './Section';
 
 const THead = () => {
 	const tableHead: string[] = [
