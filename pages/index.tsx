@@ -14,6 +14,7 @@ import Header from '../components/Header';
 import Mercury from '../components/Mercury';
 import MercuryStore from '../components/MercuryStore';
 import Revenue from '../components/Revenue';
+import Shift from '../components/Shift';
 import SocialStats from '../components/SocialStats';
 import UptimeStats from '../components/UptimeStats';
 import { HomeProps } from '../types';
@@ -75,8 +76,7 @@ const Home: NextPage<HomeProps> = ({
 					<Chart title="FORGE Spent" data={forgeSpent} />
 				</div>
 				<Bifrost tableData={tableData} />
-				{/* TODO: <Shift /> */}
-				{/* TODO: Footer */}
+				<Shift />
 			</div>
 		</>
 	);
