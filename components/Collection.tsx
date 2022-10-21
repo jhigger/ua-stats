@@ -1,7 +1,10 @@
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Logo from '../assets/BSL_WHITE.png';
-import Chart, { ChartProps } from './Chart';
+import { ChartProps } from './Chart';
 import { SectionHeader } from './Section';
+
+const Chart = dynamic(import('./Chart'), { ssr: false });
 
 export type CollectionProps = { collections: ChartProps[] };
 

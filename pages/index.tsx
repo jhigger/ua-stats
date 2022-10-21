@@ -1,11 +1,11 @@
 import type { NextPage } from 'next';
 import { GetServerSideProps } from 'next';
-import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Balances from '../components/Balances';
 import Bifrost, { TableRowProps } from '../components/Bifrost';
 import { CardGridProps } from '../components/CardGrid';
 import Chart, { ChartData, ChartProps } from '../components/Chart';
+import Collection from '../components/Collection';
 import Forge from '../components/Forge';
 import GithubCommits from '../components/GithubCommits';
 import Header from '../components/Header';
@@ -17,8 +17,6 @@ import SocialStats from '../components/SocialStats';
 import Solanakit from '../components/Solanakit';
 import UptimeStats from '../components/UptimeStats';
 import { HomeProps } from '../types';
-
-const Collection = dynamic(import('../components/Collection'), { ssr: false });
 
 const Home: NextPage<HomeProps> = (props) => {
 	return (
