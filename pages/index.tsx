@@ -11,6 +11,8 @@ import Header from '../components/Header';
 import Revenue from '../components/Revenue';
 import SocialStats, { SocialStatsProps } from '../components/SocialStats';
 import UptimeStats from '../components/UptimeStats';
+import Solanakit from '../assets/Solanakit.png';
+import Image from 'next/image';
 
 const Collection = dynamic(import('../components/Collection'), { ssr: false });
 
@@ -38,6 +40,17 @@ const Home: NextPage<SocialStatsProps & CollectionProps & BalancesProps> = ({
 					<Collection collections={collections} />
 					<Revenue />
 					<Balances balances={balances} />
+					<div className="text-white text-center flex gap-3 items-center justify-center">
+						Collection data provided by
+						<a href="https://solanakit.com/">
+							<Image
+								src={Solanakit}
+								alt="solanakit.com"
+								width={100}
+								height={28}
+							/>
+						</a>
+					</div>
 				</div>
 				{/* TODO: Footer */}
 			</div>
