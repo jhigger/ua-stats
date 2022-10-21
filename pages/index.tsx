@@ -25,7 +25,7 @@ type Props = SocialStatsProps &
 	MercuryProps;
 
 const Home: NextPage<Props> = ({
-	stats,
+	socialStats,
 	collections,
 	balances,
 	forges,
@@ -44,7 +44,7 @@ const Home: NextPage<Props> = ({
 			<div className="container mx-auto py-12 px-4 sm:px-0 max-w-4xl">
 				<Header />
 				<div className="flex flex-col gap-12">
-					<SocialStats stats={stats} />
+					<SocialStats socialStats={socialStats} />
 					<GithubCommits />
 					<UptimeStats />
 					<Collection collections={collections} />
@@ -71,7 +71,7 @@ const Home: NextPage<Props> = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-	const stats: CardGridProps[] = [
+	const socialStats: CardGridProps[] = [
 		{ title: 'Team', data: '17 Smiths' },
 		{ title: 'Twitter Followers', data: '60.91k' },
 		{ title: 'Discord Members', data: '30.91k' }
@@ -150,7 +150,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 	return {
 		props: {
-			stats,
+			socialStats,
 			collections,
 			balances,
 			forges,

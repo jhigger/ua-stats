@@ -1,12 +1,12 @@
 import CardGrid, { CardGridProps } from './CardGrid';
 import Section from './Section';
 
-export type SocialStatsProps = { stats: CardGridProps[] };
+export type SocialStatsProps = { socialStats: CardGridProps[] };
 
-const SocialStats = ({ stats }: SocialStatsProps) => {
+const SocialStats = ({ socialStats }: SocialStatsProps) => {
 	return (
 		<Section title="Social Stats">
-			<CardGrid items={stats} />
+			<CardGrid items={socialStats} />
 		</Section>
 	);
 };
