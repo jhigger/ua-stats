@@ -27,7 +27,7 @@ const Home: NextPage<HomeProps> = ({
 	forgeStats,
 	mercuryStats,
 	uniqueUsers,
-	projectsOnboarded,
+	projectsOnboard,
 	mercuryStoreStats,
 	forgeSpent,
 	tableData
@@ -55,10 +55,7 @@ const Home: NextPage<HomeProps> = ({
 					<Forge forgeStats={forgeStats} />
 					<Mercury mercuryStats={mercuryStats} />
 					<Chart title="Unique Users" data={uniqueUsers} />
-					<Chart
-						title="Projects Onboarded"
-						data={projectsOnboarded}
-					/>
+					<Chart title="Projects Onboard" data={projectsOnboard} />
 					<MercuryStore mercuryStoreStats={mercuryStoreStats} />
 					<Chart title="FORGE Spent" data={forgeSpent} />
 				</div>
@@ -157,7 +154,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		{ date: '2022-10-20', count: Math.random() }
 	];
 
-	const projectsOnboarded: ChartData[] = [
+	const projectsOnboard: ChartData[] = [
 		{ date: '2022-10-14', count: Math.random() },
 		{ date: '2022-10-15', count: Math.random() },
 		{ date: '2022-10-16', count: Math.random() },
@@ -225,7 +222,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			forgeStats,
 			mercuryStats,
 			uniqueUsers,
-			projectsOnboarded,
+			projectsOnboard,
 			mercuryStoreStats,
 			forgeSpent,
 			tableData
