@@ -2,22 +2,22 @@ import type { NextPage } from 'next';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
+import Balances, { BalancesProps } from '../components/Balances';
+import { CardGridProps } from '../components/CardGrid';
 import { ChartProps } from '../components/Chart';
 import { CollectionProps } from '../components/Collection';
 import GithubCommits from '../components/GithubCommits';
 import Header from '../components/Header';
 import Revenue from '../components/Revenue';
-import SocialStats, {
-	SocialStatsProps,
-	StatsProps
-} from '../components/SocialStats';
+import SocialStats, { SocialStatsProps } from '../components/SocialStats';
 import UptimeStats from '../components/UptimeStats';
 
 const Collection = dynamic(import('../components/Collection'), { ssr: false });
 
-const Home: NextPage<SocialStatsProps & CollectionProps> = ({
+const Home: NextPage<SocialStatsProps & CollectionProps & BalancesProps> = ({
 	stats,
-	collections
+	collections,
+	balances
 }) => {
 	return (
 		<>
@@ -37,7 +37,7 @@ const Home: NextPage<SocialStatsProps & CollectionProps> = ({
 					<UptimeStats />
 					<Collection collections={collections} />
 					<Revenue />
-					{/* <Balances /> */}
+					<Balances balances={balances} />
 				</div>
 				{/* TODO: Footer */}
 			</div>
@@ -46,7 +46,7 @@ const Home: NextPage<SocialStatsProps & CollectionProps> = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-	const stats: StatsProps[] = [
+	const stats: CardGridProps[] = [
 		{ title: 'Team', data: '17 Smiths' },
 		{ title: 'Twitter Followers', data: '60.91k' },
 		{ title: 'Discord Members', data: '30.91k' }
@@ -103,10 +103,17 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		}
 	];
 
+	const balances: CardGridProps[] = [
+		{ title: 'SOL Balance', data: '13.17k SOL' },
+		{ title: 'USDC Balance', data: '60.9k USDC' },
+		{ title: 'FORGE Balance', data: '2.36M FORGE' }
+	];
+
 	return {
 		props: {
 			stats,
-			collections
+			collections,
+			balances
 		}
 	};
 };
