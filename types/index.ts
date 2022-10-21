@@ -3,6 +3,7 @@ import { ChartData } from '../components/Chart';
 import { CollectionProps } from '../components/Collection';
 import { ForgeProps } from '../components/Forge';
 import { MercuryProps } from '../components/Mercury';
+import { MercuryStoreProps } from '../components/MercuryStore';
 import { SocialStatsProps } from '../components/SocialStats';
 
 export interface Props {
@@ -18,4 +19,5 @@ export type HomeProps = SocialStatsProps &
 	ForgeProps &
 	MercuryProps &
 	UniqueUsers &
-	ProjectsOnboarded;
+	ProjectsOnboarded &
+	MercuryStoreProps;

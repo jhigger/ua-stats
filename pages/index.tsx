@@ -11,6 +11,7 @@ import Forge from '../components/Forge';
 import GithubCommits from '../components/GithubCommits';
 import Header from '../components/Header';
 import Mercury from '../components/Mercury';
+import MercuryStore from '../components/MercuryStore';
 import Revenue from '../components/Revenue';
 import SocialStats from '../components/SocialStats';
 import UptimeStats from '../components/UptimeStats';
@@ -25,7 +26,8 @@ const Home: NextPage<HomeProps> = ({
 	forgeStats,
 	mercuryStats,
 	uniqueUsers,
-	projectsOnboarded
+	projectsOnboarded,
+	mercuryStoreStats
 }) => {
 	return (
 		<>
@@ -64,6 +66,7 @@ const Home: NextPage<HomeProps> = ({
 						title="Projects Onboarded"
 						data={projectsOnboarded}
 					/>
+					<MercuryStore mercuryStoreStats={mercuryStoreStats} />
 				</div>
 				{/* TODO: Footer */}
 			</div>
@@ -169,6 +172,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		{ date: '2022-10-20', count: Math.random() }
 	];
 
+	const mercuryStoreStats: CardGridProps[] = [
+		{ title: 'Total FORGE Spent', data: '1.99M' },
+		{ title: 'Auctions Created', data: '53' },
+		{ title: 'Total Auctioned WL Spots', data: '5.29k' },
+		{ title: 'Raffles Created', data: '682' },
+		{ title: 'Total Raffled WL Spots', data: '59.62k' },
+		{ title: 'FORGE Rewards Distributed', data: '23.49k' },
+		{ title: 'FORGE Rewards Tweets', data: '15' }
+	];
+
 	return {
 		props: {
 			socialStats,
@@ -177,7 +190,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			forgeStats,
 			mercuryStats,
 			uniqueUsers,
-			projectsOnboarded
+			projectsOnboarded,
+			mercuryStoreStats
 		}
 	};
 };
