@@ -51,9 +51,9 @@ const Home: NextPage<HomeProps> = (props) => {
 					/>
 					<MercuryStore mercuryStoreStats={props.mercuryStoreStats} />
 					<Chart title="FORGE Spent" data={props.forgeSpent} />
+					<Bifrost tableData={props.tableData} />
+					<Shift />
 				</div>
-				<Bifrost tableData={props.tableData} />
-				<Shift />
 			</div>
 		</>
 	);
