@@ -11,6 +11,7 @@ const UptimeStats = (props: Props) => {
 					src="https://stats.uptimerobot.com/kPXqjskygV"
 					frameBorder="0"
 					className="w-full h-96"
+					loading="lazy"
 				/>
 			</Card>
 		</Section>
