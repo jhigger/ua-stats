@@ -9,7 +9,7 @@ const GithubCommits = (props: Props) => {
 		<Section title="Github Commits">
 			<Card className="sm:p-8">
 				<img
-					src="https://ghchart.rshah.org/wozgun"
+					src="https://ghchart.rshah.org/jhigger"
 					alt="github calendar"
 					className="w-full"
 				/>

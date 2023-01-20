@@ -1,15 +1,19 @@
 import Image from 'next/image';
-import Logo from '../assets//BSL_WHITE.png';
 
-type Props = {};
+export type HeaderProps = { localeDate: string };
 
-const Header = (props: Props) => {
+const Header = ({ localeDate }: HeaderProps) => {
 	return (
 		<header className="flex justify-between text-white pb-12 items-center">
-			<Image src={Logo} alt="logo" width={180} height={32} />
+			<Image
+				src={'/assets/utilityape.png'}
+				alt="logo"
+				width={64}
+				height={64}
+			/>
 			<div className="text-sm flex flex-col items-end">
 				<p>Last Update</p>
-				<p>10/19/2022, 6:05:42 AM</p>
+				<p>{localeDate}</p>
 			</div>
 		</header>
 	);

@@ -14,10 +14,11 @@ export type ChartData = { date: string; count: number };
 
 export type ChartProps = {
 	title: string;
+	dataKey?: string;
 	data: ChartData[];
 };
 
-const Chart = ({ title, data }: ChartProps) => {
+const Chart = ({ title, dataKey = 'count', data }: ChartProps) => {
 	return (
 		<Section title={title}>
 			<Card>
@@ -52,7 +53,7 @@ const Chart = ({ title, data }: ChartProps) => {
 						<Tooltip />
 						<Area
 							type="monotone"
-							dataKey="count"
+							dataKey={dataKey}
 							stroke="#82ca9d"
 							fillOpacity={1}
 							fill="url(#colorCount)"

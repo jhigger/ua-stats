@@ -1,6 +1,6 @@
 import { Props } from '../types';
 
-type SectionHeaderProps = { image: JSX.Element; title: string };
+type SectionHeaderProps = { image?: JSX.Element; title: string };
 
 export const SectionHeader = ({ image, title }: SectionHeaderProps) => {
 	return (

@@ -1,25 +1,24 @@
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import Logo from '../assets/BSL_WHITE.png';
-import { ChartProps } from './Chart';
+import CardGrid, { CardGridProps } from './CardGrid';
 import { SectionHeader } from './Section';
 
-const Chart = dynamic(import('./Chart'), { ssr: false });
-
-export type CollectionProps = { collections: ChartProps[] };
+export type CollectionProps = { collections: CardGridProps[] };
 
 const Collection = ({ collections }: CollectionProps) => {
 	return (
 		<>
 			<SectionHeader
-				image={<Image src={Logo} alt="logo" width={135} height={24} />}
+				image={
+					<Image
+						src={'/assets/logo.png'}
+						alt="logo"
+						width={163}
+						height={40}
+					/>
+				}
 				title="Collection"
 			/>
-			<div className="grid sm:grid-cols-2 gap-8">
-				{collections.map(({ title, data }) => {
-					return <Chart key={title} title={title} data={data} />;
-				})}
-			</div>
+			<CardGrid items={collections} />
 		</>
 	);
 };

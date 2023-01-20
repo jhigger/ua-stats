@@ -5,7 +5,7 @@ export type BalancesProps = { balances: CardGridProps[] };
 
 const Balances = ({ balances }: BalancesProps) => {
 	return (
-		<Section title="Team Wallet Balances">
+		<Section title="Holder Wallet Balances">
 			<CardGrid items={balances} />
 		</Section>
 	);

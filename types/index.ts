@@ -1,27 +1,7 @@
-import { BalancesProps } from '../components/Balances';
-import { BifrostProps } from '../components/Bifrost';
-import { ChartData } from '../components/Chart';
-import { CollectionProps } from '../components/Collection';
-import { ForgeProps } from '../components/Forge';
-import { MercuryProps } from '../components/Mercury';
-import { MercuryStoreProps } from '../components/MercuryStore';
-import { SocialStatsProps } from '../components/SocialStats';
+import { ReactNode } from 'react';
 
 export interface Props {
-	children: JSX.Element[] | JSX.Element | string | string[] | null;
+	children: ReactNode;
 }
 
-type UniqueUsers = { uniqueUsers: ChartData[] };
-type ProjectsOnboard = { projectsOnboard: ChartData[] };
-type ForgeSpent = { forgeSpent: ChartData[] };
-
-export type HomeProps = SocialStatsProps &
-	CollectionProps &
-	BalancesProps &
-	ForgeProps &
-	MercuryProps &
-	UniqueUsers &
-	ProjectsOnboard &
-	MercuryStoreProps &
-	ForgeSpent &
-	BifrostProps;
+export type HomeProps = { [key: string]: any };
