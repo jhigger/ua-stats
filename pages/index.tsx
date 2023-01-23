@@ -133,47 +133,12 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
 	const launchpadStats: CardGridProps[] = [
 		{
-			title: 'UA',
+			title: 'Qtopia',
 			project: {
-				image: '/assets/utilityape.png',
-				link: ''
+				image: '/assets/launchpad/logo.png',
+				link: 'qtopia.com'
 			}
 		},
-		{
-			title: 'UA',
-			project: {
-				image: '/assets/utilityape.png',
-				link: ''
-			}
-		},
-		{
-			title: 'UA',
-			project: {
-				image: '/assets/utilityape.png',
-				link: ''
-			}
-		},
-		{
-			title: 'UA',
-			project: {
-				image: '/assets/utilityape.png',
-				link: ''
-			}
-		},
-		{
-			title: 'UA',
-			project: {
-				image: '/assets/utilityape.png',
-				link: ''
-			}
-		},
-		{
-			title: 'UA',
-			project: {
-				image: '/assets/utilityape.png',
-				link: ''
-			}
-		}
 	];
 
 	return {
