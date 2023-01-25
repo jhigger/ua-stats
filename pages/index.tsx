@@ -88,8 +88,8 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 			title: 'Twitter Followers',
 			data: env === 'development' ? '?' : await getTwitterFollowerCount()
 		},
-		{ title: 'Discord Members', data: '?' },
-		{ title: 'Active Raiders', data: '?' }
+		{ title: 'Discord Members', data: '12.5k' },
+		{ title: 'Active Raiders', data: '500+' }
 	];
 
 	const collections: CardGridProps[] = [
