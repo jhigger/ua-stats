@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 import Card from './Card';
 
@@ -24,13 +25,9 @@ const CardGrid = ({ items }: { items: CardGridProps[] }) => {
 								href={project.link}
 								target="_blank"
 								rel="noreferrer"
+								className="min-h-[12rem] flex items-center justify-center"
 							>
-								<Image
-									src={project.image}
-									alt="card image"
-									width={300}
-									height={300}
-								/>
+								<img src={project.image} alt="card image" />
 							</a>
 						) : (
 							''

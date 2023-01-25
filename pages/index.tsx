@@ -17,9 +17,9 @@ const Home: NextPage<HomeProps> = (props) => {
 			<Head>
 				<title>Utility APE | Stats</title>
 				<meta name="description" content="Utility APE Stats" />
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" href="/assets/utilityape.png" />
 			</Head>
-			<div className="container mx-auto py-12 px-4 sm:px-0 max-w-4xl">
+			<div className="container mx-auto py-12 px-4 sm:px-4 max-w-4xl">
 				<Header localeDate={props.localeDate} />
 				<div className="flex flex-col gap-12">
 					<SocialStats socialStats={props.socialStats} />
@@ -80,7 +80,6 @@ const getSalesAmountSOL = () =>
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
 	const env = process.env.NODE_ENV;
-	console.log(env);
 	const localeDate = new Date().toLocaleString();
 
 	const socialStats: CardGridProps[] = [
@@ -89,7 +88,8 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 			title: 'Twitter Followers',
 			data: env === 'development' ? '?' : await getTwitterFollowerCount()
 		},
-		{ title: 'Discord Members', data: '?' }
+		{ title: 'Discord Members', data: '?' },
+		{ title: 'Active Raiders', data: '?' }
 	];
 
 	const collections: CardGridProps[] = [
@@ -113,7 +113,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 	const balances: CardGridProps[] = [
 		{
 			title: 'Total SOL injected into $BANANA',
-			data: `${(1.183162314).toFixed(2)} SOL`
+			data: `${(100).toFixed(2)} SOL`
 		},
 		{ title: 'SOL to be injected into $BANANA', data: '?' }
 	];
@@ -136,9 +136,9 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 			title: 'Qtopia',
 			project: {
 				image: '/assets/launchpad/logo.png',
-				link: 'qtopia.com'
+				link: 'https://www.qtopia.io/'
 			}
-		},
+		}
 	];
 
 	return {
