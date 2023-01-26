@@ -133,9 +133,10 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 	const balances: CardGridProps[] = [
 		{
 			title: 'Total SOL injected into $BANANA',
-			data: `${(100).toFixed(2)} SOL`
+			data: `${nFormatter(100)} SOL`
 		},
-		{ title: 'SOL to be injected into $BANANA', data: '?' }
+		{ title: 'SOL to be injected into $BANANA', data: '?' },
+		{ title: 'Next Injection Date', data: '?' }
 	];
 
 	const currentSupply = 9_997_884.25;
@@ -153,7 +154,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 	const toolsStats: CardGridProps[] = [
 		{ title: 'Projects Onboarded', data: '177' },
 		{ title: 'Projects Currently Subscribed', data: '59' },
-		{ title: 'Average Monthly Revenue', data: '$7,558' }
+		{ title: 'Average Monthly Revenue', data: `${nFormatter(7_558, 2)}` }
 	];
 
 	const launchpadStats: CardGridProps[] = [
