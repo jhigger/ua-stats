@@ -187,7 +187,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
 	const bananaStats: CardGridProps[] = [
 		{ title: 'Total Supply', data: '10M' },
-		{ title: 'Claimed Supply', data: '?' },
 		{ title: 'Circulating Supply', data: nFormatter(currentSupply, 3) },
 		{
 			title: 'Burnt Supply',
