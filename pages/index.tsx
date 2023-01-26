@@ -1,3 +1,4 @@
+import axios from 'axios';
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
@@ -57,11 +58,12 @@ const nFormatter = (num: number, digits: number) => {
 		: '0';
 };
 
-const getListedNFTCount = () =>
-	fetch(
-		'https://api-mainnet.magiceden.dev/v2/collections/utility_ape_gen_2/stats'
-	)
-		.then((response) => response.json())
+const getListedNFTCount = async () =>
+	await axios
+		.get(
+			'https://api-mainnet.magiceden.dev/v2/collections/utility_ape_gen_2/stats'
+		)
+		.then((response) => response.data)
 		.then((result) => {
 			return nFormatter(result.listedCount, 2);
 		})
@@ -70,24 +72,26 @@ const getListedNFTCount = () =>
 			return '?';
 		});
 
-const getTwitterFollowerCount = async () => {
-	try {
-		const response = await fetch(
+const getTwitterFollowerCount = async () =>
+	await axios
+		.get(
 			'https://stats-mainnet.magiceden.io/social_metrics/collection/utility_ape_gen_2'
-		);
-		const result_1 = await response.json();
-		return nFormatter(result_1.twitterFollowerCount, 2);
-	} catch (error) {
-		console.log('error', error);
-		return '?';
-	}
-};
+		)
+		.then((response) => response.data)
+		.then((result) => {
+			return nFormatter(result.twitterFollowerCount, 2);
+		})
+		.catch((error) => {
+			console.log('error', error);
+			return '?';
+		});
 
 const getSalesAmountSOL = async () =>
-	await fetch(
-		'https://api-mainnet.magiceden.dev/v2/collections/utility_ape_gen_2/activities?offset=0&type=buyNow'
-	)
-		.then((response) => response.json())
+	await axios
+		.get(
+			'https://api-mainnet.magiceden.dev/v2/collections/utility_ape_gen_2/activities?offset=0&type=buyNow'
+		)
+		.then((response) => response.data)
 		.then((result) => {
 			return nFormatter(
 				result.reduce((acc: number, item: { price: number }) => {
@@ -96,6 +100,38 @@ const getSalesAmountSOL = async () =>
 				2
 			);
 		})
+		.catch((error) => {
+			console.log('error', error);
+			return '?';
+		});
+
+const getBananaBalance = async (account: string) =>
+	await axios
+		.get('https://public-api.solscan.io/account/tokens?account=' + account)
+		.then((response) => response.data)
+		.then((result: []) => {
+			return result.filter(
+				(obj: { tokenAddress: string }) =>
+					obj.tokenAddress ===
+					'BKuRYzc9CoJen8VeVsqEeQAHei4oHNXDyW4wb3ZbNP5z'
+			)[0];
+		})
+		.then((obj: { tokenAmount: { uiAmount: string } }) =>
+			nFormatter(Number(obj.tokenAmount.uiAmount), 2)
+		)
+		.catch((error) => {
+			console.log('error', error);
+			return '?';
+		});
+
+const getSolBalance = async (account: string) =>
+	await axios
+		.get('https://public-api.solscan.io/account/' + account)
+		.then((response) => response.data)
+		.then(
+			(result: { lamports: number }) =>
+				`${nFormatter(result.lamports * 0.000000001, 2)} SOL`
+		)
 		.catch((error) => {
 			console.log('error', error);
 			return '?';
@@ -133,9 +169,17 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 	const balances: CardGridProps[] = [
 		{
 			title: 'Total SOL injected into $BANANA',
-			data: `${nFormatter(100)} SOL`
+			data: `${nFormatter(100, 2)} SOL`
 		},
-		{ title: 'SOL to be injected into $BANANA', data: '?' },
+		{
+			title: 'SOL to be injected into $BANANA',
+			data:
+				env === 'development'
+					? '?'
+					: await getSolBalance(
+							'GLVMVR4oM4CQU8BR7oK7KNXrxReZNeSqYAEP7V1aJYqk'
+					  )
+		},
 		{ title: 'Next Injection Date', data: '?' }
 	];
 
@@ -148,6 +192,15 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 		{
 			title: 'Burnt Supply',
 			data: nFormatter(10_000_000 - currentSupply, 2)
+		},
+		{
+			title: 'Not In Circulation',
+			data:
+				env === 'development'
+					? '?'
+					: await getBananaBalance(
+							'GLVMVR4oM4CQU8BR7oK7KNXrxReZNeSqYAEP7V1aJYqk'
+					  )
 		}
 	];
 
