@@ -58,15 +58,12 @@ const nFormatter = (num: number, digits: number) => {
 		: '0';
 };
 
-const getListedNFTCount = async () =>
+const getGen2Stats = async () =>
 	await axios
 		.get(
 			'https://api-mainnet.magiceden.dev/v2/collections/utility_ape_gen_2/stats'
 		)
 		.then((response) => response.data)
-		.then((result) => {
-			return nFormatter(result.listedCount, 2);
-		})
 		.catch((error) => {
 			console.log('error', error);
 			return '?';
@@ -171,18 +168,46 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 		{ title: 'Active Raiders', data: '500+' }
 	];
 
+	const stats: {
+		floorPrice: number;
+		listedCount: number;
+		volumeAll: number;
+		avgPrice24hr: number;
+	} = await getGen2Stats();
+
 	const collections: CardGridProps[] = [
 		{
+			title: 'Mint Date',
+			data: 'Oct 15 2022'
+		},
+		{
+			title: 'Floor Price',
+			data:
+				env === 'development'
+					? '?'
+					: `${nFormatter(stats.floorPrice * 0.000000001, 2)} SOL`
+		},
+		{
 			title: 'Listed NFTs',
-			data: env === 'development' ? '?' : await getListedNFTCount()
+			data: env === 'development' ? '?' : nFormatter(stats.listedCount, 2)
+		},
+		{
+			title: 'Total Volume',
+			data:
+				env === 'development'
+					? '?'
+					: `${nFormatter(stats.volumeAll * 0.000000001, 2)} SOL`
+		},
+		{
+			title: 'Average Price (24 Hour)',
+			data:
+				env === 'development'
+					? '?'
+					: `${nFormatter(stats.avgPrice24hr * 0.000000001, 2)} SOL`
 		},
 		{
 			title: 'Unique Owners',
 			data: '163'
-		},
-		{
-			title: 'Total Volume',
-			data: env === 'development' ? '?' : await getTotalVolume()
 		}
 	];
 

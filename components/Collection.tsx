@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import CardGrid, { CardGridProps } from './CardGrid';
-import { SectionHeader } from './Section';
+import Section, { SectionHeader } from './Section';
 
 export type CollectionProps = { collections: CardGridProps[] };
 
@@ -18,7 +18,9 @@ const Collection = ({ collections }: CollectionProps) => {
 				}
 				title="Collection"
 			/>
-			<CardGrid items={collections} />
+			<Section title="Gen 2 NFT Stats">
+				<CardGrid items={collections} />
+			</Section>
 		</>
 	);
 };
