@@ -89,16 +89,30 @@ const getTwitterFollowerCount = async () =>
 const getSalesAmountSOL = async () =>
 	await axios
 		.get(
-			'https://api-mainnet.magiceden.dev/v2/collections/utility_ape_gen_2/activities?offset=0&type=buyNow'
+			'https://api-mainnet.magiceden.dev/v2/collections/utility_ape_gen_2/activities?offset=0&limit=100&type=buyNow'
 		)
 		.then((response) => response.data)
 		.then((result) => {
-			return nFormatter(
+			return `${nFormatter(
 				result.reduce((acc: number, item: { price: number }) => {
 					return acc + item.price;
 				}, 0),
 				2
-			);
+			)} SOL`;
+		})
+		.catch((error) => {
+			console.log('error', error);
+			return '?';
+		});
+
+const getTotalVolume = async () =>
+	await axios
+		.get(
+			'https://api-mainnet.magiceden.dev/v2/collections/utility_ape_gen_2/stats'
+		)
+		.then((response) => response.data)
+		.then((result) => {
+			return `${nFormatter(result.volumeAll * 0.000000001, 2)} SOL`;
 		})
 		.catch((error) => {
 			console.log('error', error);
@@ -161,8 +175,8 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 			data: '163'
 		},
 		{
-			title: 'Sales Amount SOL',
-			data: env === 'development' ? '?' : await getSalesAmountSOL()
+			title: 'Total Volume',
+			data: env === 'development' ? '?' : await getTotalVolume()
 		}
 	];
 
@@ -206,7 +220,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 	const toolsStats: CardGridProps[] = [
 		{ title: 'Projects Onboarded', data: '177' },
 		{ title: 'Projects Currently Subscribed', data: '59' },
-		{ title: 'Average Monthly Revenue', data: `${nFormatter(7_558, 2)}` }
+		{ title: 'Average Monthly Revenue', data: `$${nFormatter(7_558, 2)}` }
 	];
 
 	const launchpadStats: CardGridProps[] = [
