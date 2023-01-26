@@ -155,6 +155,12 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 	const env = process.env.NODE_ENV;
 	const localeDate = new Date().toLocaleString();
 
+	// Manually Update These
+	const totalInjected = 100;
+	const totalSupply = 10_000_000;
+	const currentSupply = 9_997_884.25;
+	const aveMonthlyRevenue = 7_558;
+
 	const socialStats: CardGridProps[] = [
 		{ title: 'Team', data: '9 APES' },
 		{
@@ -183,7 +189,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 	const balances: CardGridProps[] = [
 		{
 			title: 'Total SOL injected into $BANANA',
-			data: `${nFormatter(100, 2)} SOL`
+			data: `${nFormatter(totalInjected, 2)} SOL`
 		},
 		{
 			title: 'SOL to be injected into $BANANA',
@@ -197,14 +203,12 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 		{ title: 'Next Injection Date', data: '?' }
 	];
 
-	const currentSupply = 9_997_884.25;
-
 	const bananaStats: CardGridProps[] = [
-		{ title: 'Total Supply', data: '10M' },
+		{ title: 'Total Supply', data: nFormatter(totalSupply, 2) },
 		{ title: 'Circulating Supply', data: nFormatter(currentSupply, 3) },
 		{
 			title: 'Burnt Supply',
-			data: nFormatter(10_000_000 - currentSupply, 2)
+			data: nFormatter(totalSupply - currentSupply, 2)
 		},
 		{
 			title: 'Not In Circulation',
@@ -220,7 +224,10 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 	const toolsStats: CardGridProps[] = [
 		{ title: 'Projects Onboarded', data: '177' },
 		{ title: 'Projects Currently Subscribed', data: '59' },
-		{ title: 'Average Monthly Revenue', data: `$${nFormatter(7_558, 2)}` }
+		{
+			title: 'Average Monthly Revenue',
+			data: `$${nFormatter(aveMonthlyRevenue, 2)}`
+		}
 	];
 
 	const launchpadStats: CardGridProps[] = [
