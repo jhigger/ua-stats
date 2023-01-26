@@ -34,10 +34,27 @@ const Home: NextPage<HomeProps> = (props) => {
 	);
 };
 
-const kFormatter = (num: number) => {
-	return Math.abs(num) > 999
-		? Math.sign(num) * Number((Math.abs(num) / 1000).toFixed(1)) + 'k'
-		: Math.sign(num) * Math.abs(num);
+const nFormatter = (num: number, digits: number) => {
+	const lookup = [
+		{ value: 1, symbol: '' },
+		{ value: 1e3, symbol: 'k' },
+		{ value: 1e6, symbol: 'M' },
+		{ value: 1e9, symbol: 'G' },
+		{ value: 1e12, symbol: 'T' },
+		{ value: 1e15, symbol: 'P' },
+		{ value: 1e18, symbol: 'E' }
+	];
+
+	const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+	const item = lookup
+		.slice()
+		.reverse()
+		.find((item) => {
+			return num >= item.value;
+		});
+	return item
+		? (num / item.value).toFixed(digits).replace(rx, '$1') + item.symbol
+		: '0';
 };
 
 const getListedNFTCount = () =>
@@ -46,7 +63,7 @@ const getListedNFTCount = () =>
 	)
 		.then((response) => response.json())
 		.then((result) => {
-			return kFormatter(result.listedCount);
+			return nFormatter(result.listedCount, 2);
 		})
 		.catch((error) => {
 			console.log('error', error);
@@ -59,24 +76,30 @@ const getTwitterFollowerCount = async () => {
 			'https://stats-mainnet.magiceden.io/social_metrics/collection/utility_ape_gen_2'
 		);
 		const result_1 = await response.json();
-		return kFormatter(result_1.twitterFollowerCount);
+		return nFormatter(result_1.twitterFollowerCount, 2);
 	} catch (error) {
 		console.log('error', error);
 		return '?';
 	}
 };
 
-const getSalesAmountSOL = () =>
-	fetch(
+const getSalesAmountSOL = async () =>
+	await fetch(
 		'https://api-mainnet.magiceden.dev/v2/collections/utility_ape_gen_2/activities?offset=0&type=buyNow'
 	)
 		.then((response) => response.json())
 		.then((result) => {
-			return result.reduce((acc: number, item: { price: number }) => {
-				return acc + item.price;
-			}, 0);
+			return nFormatter(
+				result.reduce((acc: number, item: { price: number }) => {
+					return acc + item.price;
+				}, 0),
+				2
+			);
 		})
-		.catch((error) => console.log('error', error));
+		.catch((error) => {
+			console.log('error', error);
+			return '?';
+		});
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
 	const env = process.env.NODE_ENV;
@@ -103,10 +126,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 		},
 		{
 			title: 'Sales Amount SOL',
-			data:
-				env === 'development'
-					? '?'
-					: await getSalesAmountSOL().then((val) => val.toFixed(2))
+			data: env === 'development' ? '?' : await getSalesAmountSOL()
 		}
 	];
 
@@ -118,11 +138,16 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 		{ title: 'SOL to be injected into $BANANA', data: '?' }
 	];
 
+	const currentSupply = 9_997_884.25;
+
 	const bananaStats: CardGridProps[] = [
 		{ title: 'Total Supply', data: '10M' },
 		{ title: 'Claimed Supply', data: '?' },
-		{ title: 'Circulating Supply', data: '?' },
-		{ title: 'Burnt Supply', data: '?' }
+		{ title: 'Circulating Supply', data: nFormatter(currentSupply, 3) },
+		{
+			title: 'Burnt Supply',
+			data: nFormatter(10_000_000 - currentSupply, 2)
+		}
 	];
 
 	const toolsStats: CardGridProps[] = [
@@ -151,8 +176,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 			toolsStats,
 			launchpadStats
 		},
-		// Next.js will attempt to re-generate the page:
-		revalidate: 21600 // every 6 hours
+		revalidate: 21600 // every 6 hours?
 	};
 };
 
