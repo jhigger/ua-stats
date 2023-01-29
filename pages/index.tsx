@@ -237,13 +237,12 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 		},
 		{
 			title: 'Not In Circulation',
-			data: '4M'
-			// data:
-			// 	env === 'development'
-			// 		? '?'
-			// 		: await getBananaBalance(
-			// 				'GLVMVR4oM4CQU8BR7oK7KNXrxReZNeSqYAEP7V1aJYqk'
-			// 		  )
+			data:
+				env === 'development'
+					? '?'
+					: await getBananaBalance(
+							'9dEZkzxczZEQfWQz2z7U4TTSQbavPQGR7iSAXjCXJyPq'
+					  )
 		}
 	];
 
