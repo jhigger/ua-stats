@@ -250,7 +250,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 		{ title: 'Projects Onboarded', data: '177' },
 		{ title: 'Projects Currently Subscribed', data: '59' },
 		{
-			title: 'Average Monthly Revenue',
+			title: "Last Month's Earning",
 			data: `$${nFormatter(aveMonthlyRevenue, 2)}`
 		}
 	];
