@@ -16,7 +16,7 @@ const CardGrid = ({ items }: { items: CardGridProps[] }) => {
 				return (
 					<Card key={title + i}>
 						{project ? (
-							<dt className="flex justify-between text-sm font-medium text-neutral-300 truncate">
+							<dt className="flex justify-between text-sm font-medium text-neutral-300">
 								{title}
 
 								<a
@@ -28,7 +28,7 @@ const CardGrid = ({ items }: { items: CardGridProps[] }) => {
 								</a>
 							</dt>
 						) : (
-							<dt className="text-sm font-medium text-neutral-300 truncate">
+							<dt className="text-sm font-medium text-neutral-300">
 								{title}
 							</dt>
 						)}

@@ -153,7 +153,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 	const localeDate = new Date().toLocaleString();
 
 	// Manually Update These
-	const totalInjected = 100;
+	const totalInjected = 312;
 	const totalSupply = 10_000_000;
 	const currentSupply = 9_997_884.25;
 	const aveMonthlyRevenue = 7_558;
@@ -213,7 +213,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
 	const balances: CardGridProps[] = [
 		{
-			title: 'Total SOL injected into $BANANA',
+			title: 'Estimated SOL injected into $BANANA',
 			data: `${nFormatter(totalInjected, 2)} SOL`
 		},
 		{
