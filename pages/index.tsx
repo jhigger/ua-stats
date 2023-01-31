@@ -157,6 +157,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 	const totalSupply = 10_000_000;
 	const currentSupply = 9_997_884.25;
 	const aveMonthlyRevenue = 7_558;
+	const projectsCurrentlySubbed = 77;
 
 	const socialStats: CardGridProps[] = [
 		{ title: 'Team', data: '9 APES' },
@@ -248,7 +249,10 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
 	const toolsStats: CardGridProps[] = [
 		{ title: 'Projects Onboarded', data: '177' },
-		{ title: 'Projects Currently Subscribed', data: '59' },
+		{
+			title: 'Projects Currently Subscribed',
+			data: projectsCurrentlySubbed
+		},
 		{
 			title: "Last Month's Earning",
 			data: `$${nFormatter(aveMonthlyRevenue, 2)}`
